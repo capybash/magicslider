@@ -11,11 +11,7 @@ export default class MagicSliderSettingsPage extends ExtensionPage {
   oninit(vnode: any) {
     super.oninit(vnode);
     const raw = this.setting('capybash-magicslider.slides')() || '[]';
-    try {
-      this.slides = JSON.parse(raw);
-    } catch {
-      this.slides = [];
-    }
+    try { this.slides = JSON.parse(raw); } catch { this.slides = []; }
   }
 
   className() {
@@ -67,6 +63,7 @@ export default class MagicSliderSettingsPage extends ExtensionPage {
     return (
       <div className="MagicSliderSettingsPage">
         <div className="MagicSliderSettingsPage-content">
+
           <section className="MagicSlider-SettingsSection">
             <h3>
               <i className="fas fa-image" />
@@ -110,9 +107,9 @@ export default class MagicSliderSettingsPage extends ExtensionPage {
               })}
               {this.buildSettingComponent({
                 type: 'boolean',
-                setting: 'capybash-magicslider.hide_on_tags',
-                label: app.translator.trans('capy-magic-slider.admin.settings.hide_on_tags'),
-                help: app.translator.trans('capy-magic-slider.admin.settings.hide_on_tags_help'),
+                setting: 'capybash-magicslider.hide_on_tag_pages',
+                label: app.translator.trans('capy-magic-slider.admin.settings.hide_on_tag_pages'),
+                help: app.translator.trans('capy-magic-slider.admin.settings.hide_on_tag_pages_help'),
               })}
             </div>
           </section>
@@ -142,10 +139,7 @@ export default class MagicSliderSettingsPage extends ExtensionPage {
                         type="text"
                         placeholder={app.translator.trans('capy-magic-slider.admin.settings.image_placeholder')}
                         value={s.image}
-                        oninput={(e: any) => {
-                          s.image = e.target.value;
-                          this.syncSlides();
-                        }}
+                        oninput={(e: any) => { s.image = e.target.value; this.syncSlides(); }}
                       />
 
                       <input
@@ -153,18 +147,12 @@ export default class MagicSliderSettingsPage extends ExtensionPage {
                         type="text"
                         placeholder={app.translator.trans('capy-magic-slider.admin.settings.link_placeholder')}
                         value={s.link || ''}
-                        oninput={(e: any) => {
-                          s.link = e.target.value;
-                          this.syncSlides();
-                        }}
+                        oninput={(e: any) => { s.link = e.target.value; this.syncSlides(); }}
                       />
 
                       <Button
                         className={'Button MagicSlides-toggle' + (s.newTab ? ' is-active' : '')}
-                        onclick={() => {
-                          s.newTab = !s.newTab;
-                          this.syncSlides();
-                        }}
+                        onclick={() => { s.newTab = !s.newTab; this.syncSlides(); }}
                       >
                         {icon('fas fa-external-link-alt')}
                         <span>{app.translator.trans('capy-magic-slider.admin.settings.new_tab')}</span>

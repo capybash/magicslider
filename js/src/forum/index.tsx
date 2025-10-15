@@ -2,86 +2,66 @@ import app from 'flarum/forum/app';
 import { override } from 'flarum/common/extend';
 import IndexPage from 'flarum/forum/components/IndexPage';
 import MagicSlider from './components/MagicSlider';
-import TagsPage from 'flarum/tags/components/TagsPage';
 
 type Slide = { image: string; link?: string; newTab?: boolean | string };
 
-function readSlides(): Slide[] {
-  const raw = app.forum.attribute<string>('capybash-magicslider.slides') || '[]';
-  let slides: Slide[] = [];
-  try {
-    slides = JSON.parse(raw) as Slide[];
-  } catch {
-    slides = [];
-  }
-
-  return slides
-    .filter((s) => s && s.image)
-    .map((s) => ({
-      image: s.image || '',
-      link: s.link || '',
-      newTab: s.newTab === true || s.newTab === 'true',
-    }));
+function isTrue(v: unknown): boolean {
+  return v === true || v === 1 || v === '1' || v === 'true';
 }
 
-function readDims() {
-  const heightDesktop = Number(app.forum.attribute('capybash-magicslider.height_desktop') || 260);
-  const heightMobile = Number(app.forum.attribute('capybash-magicslider.height_mobile') || 200);
-  const padding = Number(app.forum.attribute('capybash-magicslider.padding') || 0);
-  const radius = Number(app.forum.attribute('capybash-magicslider.radius') || 0);
-  const autoplaySec = Number(app.forum.attribute('capybash-magicslider.autoplay') || 0);
-  const autoplayMs = autoplaySec > 0 ? autoplaySec * 1000 : 0;
+function isSingleTagPage(): boolean {
+  const p1 = (typeof location !== 'undefined' && location.pathname) || '';
+  if (p1 && /(?:^|\/)t(?:\/|$)/.test(p1)) return true;
+  if (p1 && /(?:^|\/)tags(?:\/|$)/.test(p1)) return false;
 
-  return { heightDesktop, heightMobile, padding, radius, autoplayMs };
+  const p2 = (window as any)?.m?.route?.get?.() || '';
+  if (p2 && /(?:^|\/)t(?:\/|$)/.test(p2)) return true;
+  if (p2 && /(?:^|\/)tags(?:\/|$)/.test(p2)) return false;
+
+  return false;
 }
 
 app.initializers.add('capybash-magicslider', () => {
   override(IndexPage.prototype, 'hero', function (original: any) {
-    const slides = readSlides();
-    if (!slides.length) return original();
+    const hideOnTagPages = isTrue(app.forum.attribute('capybash-magicslider.hide_on_tag_pages'));
 
-    const routeName =
-      (app.current as any)?.data?.routeName ||
-      (app.current as any)?.get?.('routeName') ||
-      '';
-
-    if (routeName.startsWith('tag')) {
+    if (hideOnTagPages && isSingleTagPage()) {
       return original();
     }
 
-    const { heightDesktop, heightMobile, padding, radius, autoplayMs } = readDims();
+    const rawSlides = app.forum.attribute<string>('capybash-magicslider.slides') || '[]';
+    let slides: Slide[] = [];
+    try {
+      slides = JSON.parse(rawSlides) as Slide[];
+    } catch {
+      slides = [];
+    }
+
+    const normSlides = slides
+      .filter((s) => s && s.image)
+      .map((s) => ({
+        image: s.image || '',
+        link: s.link || '',
+        newTab: s.newTab === true || s.newTab === 'true',
+      }));
+
+    if (!normSlides.length) return original();
+
+    const heightDesktop = Number(app.forum.attribute('capybash-magicslider.height_desktop') || 260);
+    const heightMobile  = Number(app.forum.attribute('capybash-magicslider.height_mobile') || 200);
+    const padding       = Number(app.forum.attribute('capybash-magicslider.padding') || 0);
+    const radius        = Number(app.forum.attribute('capybash-magicslider.radius') || 0);
+    const autoplay      = Number(app.forum.attribute('capybash-magicslider.autoplay') || 0);
 
     return (
       <MagicSlider
-        slides={slides}
+        slides={normSlides}
         heightDesktop={heightDesktop}
         heightMobile={heightMobile}
         padding={padding}
         radius={radius}
-        autoplayMs={autoplayMs}
+        autoplayMs={autoplay}
       />
     );
   });
-
-  try {
-    if (TagsPage) {
-      override(TagsPage.prototype, 'hero', function (_original: any) {
-        const slides = readSlides();
-        if (!slides.length) return null;
-
-        const { heightDesktop, heightMobile, padding, radius, autoplayMs } = readDims();
-
-        return (
-          <MagicSlider
-            slides={slides}
-            heightDesktop={heightDesktop}
-            heightMobile={heightMobile}
-            padding={padding}
-            radius={radius}
-            autoplayMs={autoplayMs}
-          />
-        );
-      });
-    }
-  } catch {}
 });
