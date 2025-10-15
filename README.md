@@ -19,8 +19,6 @@ MagicSlider replaces the WelcomeHero with a clean, configurable image slider on 
 <img width="850" height="330" alt="image" src="https://github.com/user-attachments/assets/a66d5751-b024-4302-8c49-f7aafd3e3d7b" />
 <img width="850" height="320" alt="image" src="https://github.com/user-attachments/assets/99e77985-e820-42e4-9800-18df63722eb1" />
 
-
-
 ---
 
 ## 📦 Installation
@@ -33,4 +31,4 @@ composer require capybash/magicslider:"*"
 - [**GitHub Repository**](https://github.com/capybash/magicslider)  
 - [**Packagist**](https://packagist.org/packages/capybash/magicslider)  
 - [**Extiverse**](https://extiverse.com/extension/capybash/magicslider)
-- [**Discuss**](https://discuss.flarum.org/?q=author%3Acapybara%20tag%3Aextensions%20)
+- [**Discuss**](https://discuss.flarum.org/d/38302-magicslider-smooth-and-customizable-hero-slider)
