@@ -13,6 +13,8 @@ capy-magic-slider:
       radius_help: "Corner rounding"
       autoplay: "Autoplay interval"
       autoplay_help: "0 disables auto slide"
+      hide_on_tags: "Hide slider on tag pages"
+      hide_on_tags_help: "Show the default Flarum tag hero on tag pages instead of the slider"
       add_slide: "Add slide"
       image_placeholder: "Image URL"
       link_placeholder: "Link URL"

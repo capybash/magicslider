@@ -108,6 +108,12 @@ export default class MagicSliderSettingsPage extends ExtensionPage {
                 help: app.translator.trans('capy-magic-slider.admin.settings.autoplay_help'),
                 min: 0,
               })}
+              {this.buildSettingComponent({
+                type: 'boolean',
+                setting: 'capybash-magicslider.hide_on_tags',
+                label: app.translator.trans('capy-magic-slider.admin.settings.hide_on_tags'),
+                help: app.translator.trans('capy-magic-slider.admin.settings.hide_on_tags_help'),
+              })}
             </div>
           </section>
 
