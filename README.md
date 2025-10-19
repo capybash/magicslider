@@ -16,6 +16,7 @@ MagicSlider replaces the WelcomeHero with a clean, configurable image slider on 
 
 ## 📸 Screenshots
 <img width="850" height="335" alt="image" src="https://github.com/user-attachments/assets/ea383f5c-7dce-4e8d-84e2-d35cd27237f3" />
+<img width="850" height="425" alt="image" src="https://github.com/user-attachments/assets/48661c08-9e08-43f5-a5bc-6a6395f5beea" />
 <img width="850" height="320" alt="image" src="https://github.com/user-attachments/assets/99e77985-e820-42e4-9800-18df63722eb1" />
 
 ---
