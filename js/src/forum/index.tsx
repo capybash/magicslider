@@ -24,43 +24,38 @@ function isSingleTagPage(): boolean {
 app.initializers.add('capybash-magicslider', () => {
   override(IndexPage.prototype, 'hero', function (original: any) {
     const hideOnTagPages = isTrue(app.forum.attribute('capybash-magicslider.hide_on_tag_pages'));
-
-    if (hideOnTagPages && isSingleTagPage()) {
-      return original();
-    }
+    if (hideOnTagPages && isSingleTagPage()) return original();
 
     const rawSlides = app.forum.attribute<string>('capybash-magicslider.slides') || '[]';
     let slides: Slide[] = [];
-    try {
-      slides = JSON.parse(rawSlides) as Slide[];
-    } catch {
-      slides = [];
-    }
+    try { slides = JSON.parse(rawSlides) as Slide[]; } catch { slides = []; }
 
     const normSlides = slides
       .filter((s) => s && s.image)
-      .map((s) => ({
-        image: s.image || '',
-        link: s.link || '',
-        newTab: s.newTab === true || s.newTab === 'true',
-      }));
+      .map((s) => ({ image: s.image || '', link: s.link || '', newTab: s.newTab === true || s.newTab === 'true' }));
 
     if (!normSlides.length) return original();
 
     const heightDesktop = Number(app.forum.attribute('capybash-magicslider.height_desktop') || 260);
     const heightMobile  = Number(app.forum.attribute('capybash-magicslider.height_mobile') || 200);
-    const padding       = Number(app.forum.attribute('capybash-magicslider.padding') || 0);
-    const radius        = Number(app.forum.attribute('capybash-magicslider.radius') || 0);
+    const paddingDesktop = Number(app.forum.attribute('capybash-magicslider.padding_desktop') || 0);
+    const paddingMobile  = Number(app.forum.attribute('capybash-magicslider.padding_mobile') || 0);
+    const radiusDesktop  = Number(app.forum.attribute('capybash-magicslider.radius_desktop') || 0);
+    const radiusMobile   = Number(app.forum.attribute('capybash-magicslider.radius_mobile') || 0);
     const autoplay      = Number(app.forum.attribute('capybash-magicslider.autoplay') || 0);
+    const fitToLayout   = isTrue(app.forum.attribute('capybash-magicslider.fit_to_layout'));
 
     return (
       <MagicSlider
         slides={normSlides}
         heightDesktop={heightDesktop}
         heightMobile={heightMobile}
-        padding={padding}
-        radius={radius}
+        paddingDesktop={paddingDesktop}
+        paddingMobile={paddingMobile}
+        radiusDesktop={radiusDesktop}
+        radiusMobile={radiusMobile}
         autoplayMs={autoplay}
+        fitToLayout={fitToLayout}
       />
     );
   });

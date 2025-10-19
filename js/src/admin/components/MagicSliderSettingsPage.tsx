@@ -14,9 +14,7 @@ export default class MagicSliderSettingsPage extends ExtensionPage {
     try { this.slides = JSON.parse(raw); } catch { this.slides = []; }
   }
 
-  className() {
-    return 'MagicSliderSettingsPage';
-  }
+  className() { return 'MagicSliderSettingsPage'; }
 
   oncreate(vnode: any) {
     const list = vnode.dom.querySelector('.MagicSlides-list') as HTMLElement | null;
@@ -66,38 +64,70 @@ export default class MagicSliderSettingsPage extends ExtensionPage {
 
           <section className="MagicSlider-SettingsSection">
             <h3>
-              <i className="fas fa-image" />
-              {app.translator.trans('capy-magic-slider.admin.settings.section_display')}
+              <i className="fas fa-desktop" />
+              {app.translator.trans('capy-magic-slider.admin.settings.section_desktop')}
             </h3>
             <div className="MagicSlider-SettingsSection-content">
               {this.buildSettingComponent({
                 type: 'number',
                 setting: 'capybash-magicslider.height_desktop',
-                label: app.translator.trans('capy-magic-slider.admin.settings.height_desktop'),
-                help: app.translator.trans('capy-magic-slider.admin.settings.height_desktop_help'),
+                label: app.translator.trans('capy-magic-slider.admin.settings.height'),
+                help: app.translator.trans('capy-magic-slider.admin.settings.height_help'),
                 min: 100,
               })}
               {this.buildSettingComponent({
                 type: 'number',
-                setting: 'capybash-magicslider.height_mobile',
-                label: app.translator.trans('capy-magic-slider.admin.settings.height_mobile'),
-                help: app.translator.trans('capy-magic-slider.admin.settings.height_mobile_help'),
-                min: 100,
-              })}
-              {this.buildSettingComponent({
-                type: 'number',
-                setting: 'capybash-magicslider.padding',
+                setting: 'capybash-magicslider.padding_desktop',
                 label: app.translator.trans('capy-magic-slider.admin.settings.padding'),
                 help: app.translator.trans('capy-magic-slider.admin.settings.padding_help'),
                 min: 0,
               })}
               {this.buildSettingComponent({
                 type: 'number',
-                setting: 'capybash-magicslider.radius',
+                setting: 'capybash-magicslider.radius_desktop',
                 label: app.translator.trans('capy-magic-slider.admin.settings.radius'),
                 help: app.translator.trans('capy-magic-slider.admin.settings.radius_help'),
                 min: 0,
               })}
+            </div>
+          </section>
+
+          <section className="MagicSlider-SettingsSection">
+            <h3>
+              <i className="fas fa-mobile-alt" />
+              {app.translator.trans('capy-magic-slider.admin.settings.section_mobile')}
+            </h3>
+            <div className="MagicSlider-SettingsSection-content">
+              {this.buildSettingComponent({
+                type: 'number',
+                setting: 'capybash-magicslider.height_mobile',
+                label: app.translator.trans('capy-magic-slider.admin.settings.height'),
+                help: app.translator.trans('capy-magic-slider.admin.settings.height_help'),
+                min: 100,
+              })}
+              {this.buildSettingComponent({
+                type: 'number',
+                setting: 'capybash-magicslider.padding_mobile',
+                label: app.translator.trans('capy-magic-slider.admin.settings.padding'),
+                help: app.translator.trans('capy-magic-slider.admin.settings.padding_help'),
+                min: 0,
+              })}
+              {this.buildSettingComponent({
+                type: 'number',
+                setting: 'capybash-magicslider.radius_mobile',
+                label: app.translator.trans('capy-magic-slider.admin.settings.radius'),
+                help: app.translator.trans('capy-magic-slider.admin.settings.radius_help'),
+                min: 0,
+              })}
+            </div>
+          </section>
+
+          <section className="MagicSlider-SettingsSection">
+            <h3>
+              <i className="fas fa-cog" />
+              {app.translator.trans('capy-magic-slider.admin.settings.section_behavior')}
+            </h3>
+            <div className="MagicSlider-SettingsSection-content">
               {this.buildSettingComponent({
                 type: 'number',
                 setting: 'capybash-magicslider.autoplay',
@@ -110,6 +140,12 @@ export default class MagicSliderSettingsPage extends ExtensionPage {
                 setting: 'capybash-magicslider.hide_on_tag_pages',
                 label: app.translator.trans('capy-magic-slider.admin.settings.hide_on_tag_pages'),
                 help: app.translator.trans('capy-magic-slider.admin.settings.hide_on_tag_pages_help'),
+              })}
+              {this.buildSettingComponent({
+                type: 'boolean',
+                setting: 'capybash-magicslider.fit_to_layout',
+                label: app.translator.trans('capy-magic-slider.admin.settings.fit_to_layout'),
+                help: app.translator.trans('capy-magic-slider.admin.settings.fit_to_layout_help'),
               })}
             </div>
           </section>
