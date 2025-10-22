@@ -1,7 +1,7 @@
 import app from 'flarum/admin/app';
 import ExtensionPage from 'flarum/admin/components/ExtensionPage';
 import Button from 'flarum/common/components/Button';
-import icon from 'flarum/common/helpers/icon';
+import m from 'mithril';
 
 type Slide = { image: string; link?: string; newTab?: boolean };
 
@@ -159,7 +159,7 @@ export default class MagicSliderSettingsPage extends ExtensionPage {
               <div className="Form-group">
                 <div className="MagicSlides-toolbar">
                   <Button className="Button Button--primary" onclick={() => this.add()}>
-                    {icon('fas fa-plus')} {app.translator.trans('capy-magic-slider.admin.settings.add_slide')}
+                    <i className="fas fa-plus" /> {app.translator.trans('capy-magic-slider.admin.settings.add_slide')}
                   </Button>
                 </div>
 
@@ -167,7 +167,7 @@ export default class MagicSliderSettingsPage extends ExtensionPage {
                   {this.slides.map((s, i) => (
                     <div key={i} className="MagicSlides-item" data-index={i} draggable="true">
                       <span className="MagicSlides-handle" title={app.translator.trans('capy-magic-slider.admin.settings.drag')}>
-                        {icon('fas fa-grip-vertical')}
+                        <i className="fas fa-grip-vertical" />
                       </span>
 
                       <input
@@ -190,13 +190,13 @@ export default class MagicSliderSettingsPage extends ExtensionPage {
                         className={'Button MagicSlides-toggle' + (s.newTab ? ' is-active' : '')}
                         onclick={() => { s.newTab = !s.newTab; this.syncSlides(); }}
                       >
-                        {icon('fas fa-external-link-alt')}
+                        <i className="fas fa-external-link-alt" />
                         <span>{app.translator.trans('capy-magic-slider.admin.settings.new_tab')}</span>
                       </Button>
 
                       <div className="MagicSlides-actions">
                         <Button className="Button Button--danger" onclick={() => this.remove(i)}>
-                          {icon('fas fa-trash')}
+                          <i className="fas fa-trash" />
                           <span>{app.translator.trans('capy-magic-slider.admin.settings.delete')}</span>
                         </Button>
                       </div>

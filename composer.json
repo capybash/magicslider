@@ -18,8 +18,8 @@
     }
   ],
   "require": {
-    "php": ">=8.0",
-    "flarum/core": "^1.8"
+    "php": ">=8.2",
+    "flarum/core": "^2.0"
   },
   "autoload": {
     "psr-4": {
@@ -28,7 +28,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-1.x": "1.x-dev"
+      "dev-2.x": "2.x-dev"
     },
     "flarum-extension": {
       "title": "Magic Slider",
