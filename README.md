@@ -8,7 +8,7 @@ MagicSlider replaces the WelcomeHero with a clean, configurable image slider on 
 - 🎞️ Smooth horizontal slide animation
 - ↔️ Drag-and-drop slide ordering in admin 
 - 🔗 Per-slide link + «open in new tab» toggle  
-- 🖼️ Slider on the index hero — replaces WelcomeHere
+- 🖼️ Slider on the index hero — replaces WelcomeHero
 - 🖲️ Navigation arrows + dots + swipe support on mobile
 - 📱 Separate height, border radius, and padding settings for desktop & mobile  
 
