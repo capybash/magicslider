@@ -1,16 +1,16 @@
 # ✨ MagicSlider for Flarum
-MagicSlider replaces the WelcomeHero with a clean, configurable image slider on the forum home page.
+MagicSlider replaces the WelcomeHero with a clean, configurable image slider on the forum home page. **Supports Flarum 1.x and 2.x**
 
 ---
 
 ## 🚀 Features
-- 🖼️Slider on the index hero — replaces WelcomeHero
-- 🔗 Per-slide link + «open in new tab» toggle
-- 📱 Separate heights for desktop & mobile
-- ↔️ Drag-and-drop slide ordering in admin
 - ⏱️ Optional autoplay
-- 🖲️ Navigation arrows + dots
 - 🎞️ Smooth horizontal slide animation
+- ↔️ Drag-and-drop slide ordering in admin 
+- 🔗 Per-slide link + «open in new tab» toggle  
+- 🖼️ Slider on the index hero — replaces WelcomeHere
+- 🖲️ Navigation arrows + dots + swipe support on mobile
+- 📱 Separate height, border radius, and padding settings for desktop & mobile  
 
 ---
 

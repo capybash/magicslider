@@ -1,16 +1,8 @@
 {
   "name": "capybash/magicslider",
-  "description": "MagicSlider replaces the WelcomeHero with a configurable image slider on the forum home page.",
+  "description": "Configurable image slider replacing the WelcomeHero on the forum home page.",
   "type": "flarum-extension",
-  "keywords": [
-    "flarum",
-    "extension",
-    "slider",
-    "banner",
-    "hero",
-    "image",
-    "magic"
-  ],
+  "keywords": ["flarum", "flarum-extension", "slider", "banner", "hero", "image", "magic"],
   "license": "MIT",
   "homepage": "https://github.com/capybash/magicslider",
   "support": {
@@ -21,6 +13,7 @@
   "authors": [
     {
       "name": "capybash",
+      "role": "Developer",
       "homepage": "https://github.com/capybash"
     }
   ],
